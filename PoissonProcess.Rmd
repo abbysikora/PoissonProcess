@@ -1,0 +1,85 @@
+---
+title: "STAT 462: R Project 2"
+author: "Abigail Sikora"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Question 1
+```{r}
+N=rpois(10,2)
+sum=0
+for(i in 1:10){
+  sum=sum+N[i]
+}
+print(sum)
+```
+
+Question 2
+```{r}
+s<-runif(10, min=0, max=10)
+S<-sort(s, decreasing=FALSE)
+for(i in 1:10){
+  cat(sprintf("S%s=%s\n", i, S[i]))
+}
+```
+
+Question 3
+```{r}
+N=rpois(100,2)
+N
+s<-runif(100, min=0, max=100)
+S<-sort(s, decreasing=FALSE)
+#only printing out first 10 values
+for(i in 1:10){
+  cat(sprintf("S%s=%s\n", i, S[i]))
+}
+X<-rep(0,100)
+X[1]=S[1]
+for(n in 2:100){
+  X[n]=S[n]-S[n-1]
+}
+print("The first 10 interarrival times:")
+for(i in 1:10){
+  cat(sprintf("X%s=%s\n", i, X[i]))
+}
+```
+
+Question 4
+```{r}
+hist(X, main='Histogram of Interarrival Times',xlab='Events', ylab='Density', ylim=c(0,1.2), col='blue', breaks=20, freq=FALSE)
+curve(dexp(x,log=FALSE), col='red', add=TRUE)
+```
+
+Question 5
+```{r}
+t=rexp(10,0.25)
+t
+T=rep(0,10)
+T[1]=t[1]
+sum=T[1]
+for(i in 2:10){
+  T[i]=t[i]+sum
+  sum=T[i]
+}
+T
+```
+
+Question 6
+```{r}
+for(a in 1:3){
+  t=rexp(10,0.25)
+  T=rep(0,10)
+  T[1]=t[1]
+  sum=T[1]
+  for(i in 2:10){
+    T[i]=t[i]+sum
+    sum=T[i]
+  }
+  print(T[5])
+}
+```
+The theoretical mean of S5 is `r 5/.25`
