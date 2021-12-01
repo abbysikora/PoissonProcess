@@ -15,6 +15,7 @@ sum=0
 for(i in 1:10){
   sum=sum+N[i]
 }
+#prints number of events that happened by time 10
 print(sum)
 ```
 
@@ -37,6 +38,7 @@ S<-sort(s, decreasing=FALSE)
 for(i in 1:10){
   cat(sprintf("S%s=%s\n", i, S[i]))
 }
+#computing interarrival times
 X<-rep(0,100)
 X[1]=S[1]
 for(n in 2:100){
@@ -49,6 +51,7 @@ for(i in 1:10){
 ```
 
 Question 4
+#making a histogram of the interarrival times with an exponential density curve added
 ```{r}
 hist(X, main='Histogram of Interarrival Times',xlab='Events', ylab='Density', ylim=c(0,1.2), col='blue', breaks=20, freq=FALSE)
 curve(dexp(x,log=FALSE), col='red', add=TRUE)
@@ -56,6 +59,7 @@ curve(dexp(x,log=FALSE), col='red', add=TRUE)
 
 Question 5
 ```{r}
+#T is exponentially distributed
 t=rexp(10,0.25)
 t
 T=rep(0,10)
@@ -82,4 +86,5 @@ for(a in 1:3){
   print(T[5])
 }
 ```
+#comparing the theoretical mean to the values calculated above
 The theoretical mean of S5 is `r 5/.25`
